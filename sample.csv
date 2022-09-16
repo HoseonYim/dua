@@ -1,0 +1,5 @@
+﻿timestamp,app,category,tag
+0,testApp,Entertainment,True
+2,testApp,Entertainment,False
+5,testGame,Game,True
+8,testGame,Game,False

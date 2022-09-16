@@ -1,16 +1,39 @@
-# PS C:\Users\user> python ./dua/python.py
 # Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
-# ㅠㅠ
-
-# 아마도 저만 실행 할 수 있는 것 같아요
 # /python.py python.py
-# 고양이좋아
+from cmath import log
 import matplotlib.pyplot as plt
+import numpy as np
+import csv
 
-x = [1, 2, 3, 4, 5]         #x축
-y = [1, 4, 9, 16, 25]       #y축
+csvPath = 'sample.csv'
+csvFile = open(csvPath, 'r', encoding='utf-8')
+csvRdr = csv.reader(csvFile)
 
-plt.plot(x, y)
+app = []
+time = []
+
+logTimestamp = []
+logApp = []
+logCategory = []
+logTag = []
+
+next(csvRdr)
+
+for line in csvRdr:
+    logTimestamp.append(int(line[0]))
+    logApp.append(line[1])
+    logCategory.append(line[2])
+    logTag.append(line[3])
+
+print(logTimestamp)
+print(logApp)
+print(logCategory)
+print(logTag)
+
+for i in range(len(logTimestamp)):
+    if logTag[i] == 'False':
+        app.append(logApp[i])
+        time.append(logTimestamp[i] - logTimestamp[i - 1])
+
+plt.bar(app, time)
 plt.show()
-
-#실행된거 보이시나요?
