@@ -39,16 +39,25 @@ def usageRatio(appUsageLog):
     app = []
     time = []
 
-    for i in range(len(appUsageLog.app)):
+    for i in range(len(appUsageLog.tag)):
         if appUsageLog.tag[i] == 'False':
             app.append(appUsageLog.app[i])
             time.append(appUsageLog.timestamp[i] - appUsageLog.timestamp[i - 1])
     
     setPlt(app, time)
 
+    plt.title("Usage Ratio")
     plt.legend()
+    
     plt.show()
 
+def stepPlot(appUsageLog):          #추가 작업 필요
+    time = []      
+
+    plt.step(range(appUsageLog.time[0], appUsageLog.time[-1] + 1), )
+
+    plt.legend()
+    plt.show()
 
 def main():
     csvRdr = csvLoad('sample.csv')
@@ -57,7 +66,7 @@ def main():
 
     appUsageLog = csvToArr(csvRdr)
 
-    usageRatio(appUsageLog)
-    
+    usageRatio(appUsageLog)     #visualization
+    stepPlot(appUsageLog)
 
 main()
