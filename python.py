@@ -1,39 +1,73 @@
-# Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
-# /python.py python.py
-from cmath import log
+# dataVisualization.py by localhost
+
 import matplotlib.pyplot as plt
 import numpy as np
-import csv
 
-csvPath = 'sample.csv'
-csvFile = open(csvPath, 'r', encoding='utf-8')
-csvRdr = csv.reader(csvFile)
 
-app = []
-time = []
+class log():
+    timestamp = [None]
+    app = [None]
+    category = [None]
+    tag = [None]
 
-logTimestamp = []
-logApp = []
-logCategory = []
-logTag = []
 
-next(csvRdr)
+def csvToArr(csvRdr):
+    csvLog = log()
 
-for line in csvRdr:
-    logTimestamp.append(int(line[0]))
-    logApp.append(line[1])
-    logCategory.append(line[2])
-    logTag.append(line[3])
+    next(csvRdr)
 
-print(logTimestamp)
-print(logApp)
-print(logCategory)
-print(logTag)
+    for line in csvRdr:
+        csvLog.timestamp.append(int(line[0]))
+        csvLog.app.append(line[1])
+        csvLog.category.append(line[2])
+        csvLog.tag.append(line[3])
 
-for i in range(len(logTimestamp)):
-    if logTag[i] == 'False':
-        app.append(logApp[i])
-        time.append(logTimestamp[i] - logTimestamp[i - 1])
+    return csvLog
 
-plt.bar(app, time)
-plt.show()
+
+def setPlt(app, time):
+    for i in range(len(time) - 1, 0, -1):
+        plt.bar('today', time[i], label=app[i])
+
+    return plt.bar('today', time[0], bottom=time[1], label=app[0])
+
+
+def usageRatio(appUsageLog):
+    app = []
+    time = []
+
+    for i in range(len(appUsageLog.tag)):
+        if appUsageLog.tag[i] == 'False':
+            app.append(appUsageLog.app[i])
+            time.append(
+                appUsageLog.timestamp[i] - appUsageLog.timestamp[i - 1])
+
+    setPlt(app, time)
+
+    plt.title("Usage Ratio")
+    plt.legend()
+
+    plt.show()
+
+
+def stepPlot(appUsageLog):  # 추가 작업 필요
+    time = []
+
+    plt.step(range(appUsageLog.time[0], appUsageLog.time[-1] + 1), )
+
+    plt.legend()
+    plt.show()
+
+
+def main():
+    csvRdr = csvLoad('sample.csv')
+
+    appUsageLog = log()
+
+    appUsageLog = csvToArr(csvRdr)
+
+    usageRatio(appUsageLog)  # visualization
+    stepPlot(appUsageLog)
+
+
+main()
