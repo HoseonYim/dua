@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 
-userData = pd.read_csv('User1.csv')
+userData = pd.read_csv('Users.csv')
 charaters = userData.drop(columns=['Addicted'])
 addicted = userData['Addicted']
 
