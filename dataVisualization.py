@@ -2,32 +2,8 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-import csv
-
-class log():
-    timestamp = [None]
-    app = [None]
-    category = [None]
-    tag = [None]
-
-def csvLoad(csvPath):
-    csvFile = open(csvPath, 'r', encoding='utf-8')
-    csvRdr = csv.reader(csvFile)
-
-    return csvRdr
-
-def csvToArr(csvRdr):
-    csvLog = log()
-
-    next(csvRdr)
-
-    for line in csvRdr:
-        csvLog.timestamp.append(int(line[0]))
-        csvLog.app.append(line[1])
-        csvLog.category.append(line[2])
-        csvLog.tag.append(line[3])
-
-    return csvLog
+import csvFunc
+import classModule
 
 def setPlt(app, time):
     for i in range(len(time) - 1, 0, -1):
@@ -54,17 +30,17 @@ def usageRatio(appUsageLog):
 def stepPlot(appUsageLog):          #추가 작업 필요
     time = []      
 
-    plt.step(range(appUsageLog.time[0], appUsageLog.time[-1] + 1), )
+    plt.step(range(appUsageLog.time[0], appUsageLog.time[-1] + 1), )        #보수 필요
 
     plt.legend()
     plt.show()
 
 def main():
-    csvRdr = csvLoad('sample.csv')
+    csvRdr = csvFunc.csvLoad('sample.csv')
 
-    appUsageLog = log()
+    appUsageLog = classModule.log()
 
-    appUsageLog = csvToArr(csvRdr)
+    appUsageLog = csvFunc.csvToArr(csvRdr)
 
     usageRatio(appUsageLog)     #visualization
     stepPlot(appUsageLog)
