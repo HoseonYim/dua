@@ -3,5 +3,10 @@
 2,testApp,Entertainment,False
 5,testGame,Game,True
 8,testGame,Game,False
+<<<<<<< HEAD:sample.csv
+10,testMusic,Entertainment,True
+19,testMusic,Entertainment,False
+=======
 9,testMusic,EnterTainment,True
 17,testMusic,EnterTainment,False
+>>>>>>> WK-Shim:usageRatio/appLog.csv
