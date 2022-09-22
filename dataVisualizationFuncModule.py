@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import IntEnum
 import math
 import csv
 import classModule
@@ -22,7 +22,7 @@ def csvToArr(csvRdr):
 
     return csvLog
 
-def isLast(time1: Time, time2: Time):
+def isLast(time1: classModule.Time, time2: classModule.Time):
     if (time1.hour > time2.hour):
         return True
 
@@ -35,7 +35,7 @@ def isLast(time1: Time, time2: Time):
     return False
 
 
-def calcTime(time: DuringTime):
+def calcTime(time: classModule.DuringTime):
 
     time1 = time.startTime
     time2 = time.endTime
@@ -50,4 +50,4 @@ def calcTime(time: DuringTime):
 
     realTime_min = time1Min-time2Min
 
-    return Time("-", math.floor(realTime_min/60), realTime_min % 60)
+    return classModule.Time("-", math.floor(realTime_min/60), realTime_min % 60)

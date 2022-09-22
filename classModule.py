@@ -1,10 +1,14 @@
+from enum import IntEnum
+from tempfile import tempdir
+import math
+
 class log():
     timestamp = [None]
     app = [None]
     category = [None]
     tag = [None]
 
-class Type(enum.IntEnum):
+class Type(IntEnum):
     internet = 0,
     game = 1,
     chatting = 2

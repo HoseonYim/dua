@@ -2,7 +2,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from module import dataVisualizationFuncModule
+import dataVisualizationFuncModule as dvfm
 #from module import classModule
 
 def setPlt(app, time):
@@ -58,18 +58,18 @@ def makeGraph(id):
     for data in selectedUser.dataList:
         if (lastDay != data.time.startTime.day):
             yValue.append([])
-            for data1 in mainClass.Type:
+            for data1 in dvfm.classModule.Type:
                 yValue[index+1].append(0)
             lastDay = data.time.startTime.day
             index += 1
             xValue.append(data.time.startTime.day)
 
-        calcTime = mainClass.calcTime(data.time)
+        calcTime = dvfm.classModule.calcTime(data.time)
         type = (int)(data.type)
         yValue[index][type] += calcTime.hour * 60 + calcTime.minute
 
     # generate graph
-    for data in mainClass.Type:
+    for data in dvfm.classModule.Type:
         thisData = []
         for index in range(len(yValue)):
             thisData.append(yValue[index][data])
@@ -83,11 +83,11 @@ def makeGraph(id):
     plt.show()
 
 def main():
-    csvRdr = csvFunc.csvLoad('sample.csv')
+    csvRdr = dvfm.csvLoad('sample.csv')
 
-    appUsageLog = classModule.log()
+    appUsageLog = dvfm.classModule.log()
 
-    appUsageLog = csvFunc.csvToArr(csvRdr)
+    appUsageLog = dvfm.csvToArr(csvRdr)
 
     usageRatio(appUsageLog)
     makeGraph(0)
