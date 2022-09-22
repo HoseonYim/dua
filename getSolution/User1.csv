@@ -1,0 +1,7 @@
+OperateTime,AppName,AppCategory,AppFunction
+12:00,GoogleClassroom,Education,TRUE
+13:00,GoogleClassroom,Education,FALSE
+15:00,Tetris,Game,TRUE
+17:00,Tetris,Game,FALSE
+17:00,Instagram,SocialNetworkService,TRUE
+17:30,Instagram,SocialNetworkService,FALSE
